@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+    </head>
+    <body>
+        <div id="app">
+            {{message}}
+            <cpn></cpn>
+            <cpn></cpn>
+            <cpn></cpn>
+        </div>
+        
+        <div id="app2">
+            <cpn></cpn>
+        </div>
+    <script  src="../js/vue.js"></script>
+    <script>
+        // 1.创建组件构造器
+        const cpnC = Vue.extend({
+            template: `
+                <div>
+                    <h2>我是标题</h2>
+                    <p>我是内容，哈哈哈啊</p>
+                </div>
+            `
+        });
+
+        // 2.注册组件（全局组件,意味着可以再多个Vue的实例下面使用）
+        // Vue.component('cpn',cpnC);
+
+        // 疑问： 怎么注册的组件才是局部组件了？
+
+        //在vue中option里添加components组件
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello vue'
+            },
+            components: {
+                //cpn使用组件时的标签名
+                cpn: cpnC
+            }
+        });
+
+        const app2 = new Vue({
+            el: '#app2',
+            data: {
+
+            }
+        })
+    </script>
+    <body>
+</html>

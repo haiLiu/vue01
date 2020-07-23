@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- v-if: 当条件为false时，包含v-if指令的元素，根本就不会存在dom -->
+            <h2 v-if="isShow" id="vif">{{message}}</h2>
+            
+            <!-- v-show: 当条件为false时，v-show知识给元素添加一个行内样式： display： none -->
+            <h2 v-show="isShow" id="vshow">{{message}}</h2>
+        
+        <!-- 当需要在显示隐藏之间切片很频繁时，使用v-show，当只有一次切换时，通过使用v-if -->
+        </div>
+    <script  src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello vue',
+                isShow: true
+            }
+        })
+    </script>
+    <body>
+</html>

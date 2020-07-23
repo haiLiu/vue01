@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+        <style>
+            .active{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 作业需求：点击列表中的某一项，该项的文字变成红色 -->
+        <div id="app">
+            {{message}}
+            <ul v-for="(i,index) in movies">
+                <li v-on:click='activeClick(index)' :class="{active:index == nowindex}">{{index + '-' + i}}</li>
+            </ul>
+        </div>
+    <script  src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello vue',
+                movies: ['海王','海尔兄弟','火影忍者','进击的巨人'],
+                nowindex:-1
+            },
+            methods:{
+                activeClick: function (index) {
+                    this.nowindex = index;
+                }
+            }
+        })
+    </script>
+    <body>
+</html>

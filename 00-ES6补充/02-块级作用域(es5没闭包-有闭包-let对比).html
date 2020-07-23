@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+    </head>
+    <body>
+       <button>button1</button>
+       <button>button2</button>
+       <button>button3</button>
+       <button>button4</button>
+       <button>button5</button>
+    <script>
+        
+        //1.没有块级作用域引起的问题： for的块级
+        var btns = document.getElementsByTagName('button');
+        for (var i=0; i<btns.length; i++){
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+        // 1.情况一： ES5中没有使用闭包（错误方式）
+        i = 0;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        i = 1;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        i = 2;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        i = 3;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        i = 4;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        i = 5;
+        {
+            var i = 0;
+            btns[i].addEventListener('click', function(){
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        //2.情况二： ES5中使用闭包
+            //为什么闭包可以解决问题：函数是一个作用域
+        var btns = document.getElementsByTagName('button');
+        for (var i=0; i<btns.length; i++){
+            (function (i) {
+                btns[i].addEventListener('click', function () {
+                    console.log('第' + i + '个按钮被点击');
+                })
+            })(i)
+        }
+
+        /* i = 0;
+        function (i) { //i = 0
+            btns[i].addEventListener('click', function () {
+                    console.log('第' + i + '个按钮被点击');
+            })
+        }(0)
+
+        i = 1;
+        function (i) { //i = 1
+            btns[i].addEventListener('click', function () {
+                    console.log('第' + i + '个按钮被点击');
+            })
+        }(1)
+
+        i = 2;
+        function (i) { //i = 2
+            btns[i].addEventListener('click', function () {
+                    console.log('第' + i + '个按钮被点击');
+            })
+        }(2) */
+            
+        
+        // 3.es6中let有块级作用域
+        const btns = document.getElementsByTagName('button');
+        for (let i = 0; i < btns.length; i++){
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        {
+            i = 0;
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        {
+            i = 1;
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+        {
+            i = 2;
+            btns[i].addEventListener('click', function () {
+                console.log('第' + i + '个按钮被点击');
+            })
+        }
+
+
+    </script>
+    <body>
+</html>

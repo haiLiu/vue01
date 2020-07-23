@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 1.事件调用的方法没有参数 -->
+            <button @click="btn1Click">按钮1</button>
+            <button @click="btn1Click()">按钮1</button>
+
+            <!-- 2.在事件定义时，写函数时省略了小括号，但是方法本身需要一个参数的 -->
+            <!-- <button @click="btn2Click(123)">按钮2</button> -->
+            <!-- <button @click="btn2Click()">按钮2</button> -->
+
+            <!-- 这个时候vue会默认把浏览器生产的event事件对象作为参数传入到方法 -->
+            <button @click="btn2Click">按钮2</button> 
+
+            <!-- 3.在方法定义时，我们需要event对象时，同时又需要其他参数 -->
+            <!-- 在调用方法时，如何手动的获取到浏览器参数的event对象： $event -->
+            <button @click="btn3Click(123,event)">按钮3</button>
+            <button @click="btn3Click(abc,$event)">按钮3</button>
+            <button>按钮4</button>
+        </div>
+    <script  src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                message: 'hello vue',
+                event: 'codewhy',
+                abc: '变量abc'
+            },
+            methods:{
+                btn1Click() {
+                    console.log('btn1Click');
+                },
+                btn2Click(abc) {
+                    console.log('------',abc);
+                },
+                btn3Click(abc,event) {
+                    console.log('++++++++',abc,event);
+                }
+            }
+        })
+
+        //如果函数需要参数，但是没有传入，那么函数的形参默认值为undefined
+        // function abc(name){
+        //     console.log(name);
+        // }
+        // abc();
+    </script>
+    <body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>title</title>
+    </head>
+    <body>
+        <div id="app">
+            {{fullName}}
+        </div>
+    <script  src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data:{
+                firstName: 'Kobe',
+                lastName: 'Bryant'
+            },
+            computed: {
+                // fullName: function () {
+                //     return this.firstName + ' ' +this.lastName
+                // }
+                fullName: {
+                   set: function (newValue) {
+                        console.log('调用了set方法',newValue);
+                        const names = newValue.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[1];
+                    },
+                    // 计算属性一般是没有set方法，只读属性
+                    get: function () {
+                        return this.firstName + ' ' + this.lastName;
+                    }
+                }
+            }
+        })
+    </script>
+    <body>
+</html>
